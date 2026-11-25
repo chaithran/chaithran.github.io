@@ -686,6 +686,8 @@
 }
 
 .nav__inner[b-gelav4ep8t] { display: flex; align-items: center; gap: 1.25rem; min-height: 4rem; }
+/* the menu may use more width than the page content below it */
+.nav__inner.page[b-gelav4ep8t] { width: min(100% - 2 * var(--gutter), 1480px); }
 
 .nav__brand[b-gelav4ep8t] { display: flex; align-items: center; gap: 0.65rem; color: var(--ink); text-decoration: none; font-weight: 700; white-space: nowrap; }
 .nav__mono[b-gelav4ep8t] {
@@ -721,11 +723,22 @@
 .nav__lang[b-gelav4ep8t] { font-size: var(--text-xs); font-weight: 700; padding: 0 0.7rem; min-height: 2.5rem; }
 .nav__menu[b-gelav4ep8t] { display: none; }
 
-@media (max-width: 1520px) {
+/* the full name next to the logo only on wide screens */
+@media (max-width: 1700px) {
     .nav__name[b-gelav4ep8t] { display: none; }
 }
 
-@media (max-width: 1240px) {
+/* Laptops (also with 125-150 % Windows scaling): smaller links so the whole menu still fits. */
+@media (max-width: 1400px) {
+    .nav__inner[b-gelav4ep8t] { gap: 0.6rem; }
+    .nav__links[b-gelav4ep8t] { gap: 0; }
+    .nav__links a[b-gelav4ep8t] { padding: 0.4rem 0.42rem; font-size: var(--text-xs); }
+    .mode button[b-gelav4ep8t] { padding: 0.28rem 0.55rem; }
+    .nav__lang[b-gelav4ep8t] { padding: 0 0.45rem; }
+}
+
+/* Tablets and phones: the links fold into the menu button. */
+@media (max-width: 1100px) {
     .nav__menu[b-gelav4ep8t] { display: inline-flex; }
     .nav__links[b-gelav4ep8t] {
         position: absolute; inset: 4rem 0 auto 0; flex-direction: column; gap: 0;
