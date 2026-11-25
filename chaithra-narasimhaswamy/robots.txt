@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chaithran.github.io/chaithra-narasimhaswamy/sitemap.xml

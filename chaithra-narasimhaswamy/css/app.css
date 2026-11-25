@@ -1,0 +1,242 @@
+/* =====================================================================
+   Global styles: reset, page layout and a few shared building blocks
+   (buttons, chips, section headers). Styles for one component live in
+   that component's .razor.css file next to it.
+   ===================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem; /* keeps section titles clear of the sticky nav */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: var(--text-md);
+    line-height: var(--leading);
+    color: var(--ink);
+    background-color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "tnum" 0;
+    transition: background-color var(--fast), color var(--fast);
+}
+
+h1, h2, h3, h4 { margin: 0; line-height: var(--leading-tight); font-weight: 760; letter-spacing: -0.02em; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+a { color: var(--signal); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+button { font: inherit; color: inherit; }
+code, kbd, pre { font-family: var(--font-code); font-size: 0.92em; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; }
+img, svg { display: block; max-width: 100%; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+[tabindex="-1"]:focus { outline: none; }
+
+::selection { background: var(--signal); color: var(--on-signal); }
+
+.visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; padding: 0; border: 0;
+}
+
+.skip-link {
+    position: absolute; left: 1rem; top: -3rem; z-index: 100;
+    background: var(--signal); color: var(--on-signal); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Background: glows (CSS) + animated network (js/background.js) ---------- */
+
+body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        radial-gradient(42rem 32rem at 88% 8%, var(--glow-1), transparent 70%),
+        radial-gradient(36rem 30rem at 4% 46%, var(--glow-2), transparent 70%),
+        radial-gradient(40rem 30rem at 14% 100%, var(--glow-3), transparent 70%);
+}
+#bg-net { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+#app { position: relative; z-index: 1; }
+
+/* Brief highlight on an element the visitor jumped to (site.flash). */
+.is-flash { animation: flash 2s var(--ease); border-radius: var(--radius); }
+@keyframes flash { 0%, 30% { background: color-mix(in srgb, var(--signal) 16%, transparent); box-shadow: 0 0 0 8px color-mix(in srgb, var(--signal) 16%, transparent); } 100% { background: transparent; box-shadow: 0 0 0 8px transparent; } }
+
+/* ---------- Page layout ---------- */
+
+.page { width: min(100% - 2 * var(--gutter), var(--page)); margin-inline: auto; }
+
+/* Sections after the hero sit on a light, see-through panel so the animated background stays visible.
+   Text-heavy sections add class="section--dense" for a more opaque panel (--panel-dense in tokens.css).
+   The panel grows outwards by --panel-pad, so the text keeps the same width. */
+.section {
+    --panel-pad: clamp(0.85rem, 0.3rem + 1.8vw, 2rem);
+    position: relative;
+    width: min(100% - 2 * max(0.5rem, var(--gutter) - var(--panel-pad)), var(--page) + 2 * var(--panel-pad));
+    margin-top: calc(var(--section-gap) * 0.3);
+    padding: var(--panel-pad);
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: clamp(18px, 1rem + 1vw, 26px);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+.section--dense {
+    background: var(--panel-dense);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+    backdrop-filter: blur(10px) saturate(1.15);
+    box-shadow: 0 30px 80px -50px rgba(0, 0, 0, 0.55);
+}
+.section:last-of-type { margin-bottom: calc(var(--section-gap) * 0.35); }
+
+/* Section header: title + one sentence of intro, left aligned */
+.section-head { display: grid; gap: 0.4rem; max-width: 46rem; margin-bottom: clamp(1rem, 0.8rem + 1vw, 1.5rem); }
+.section-head h2 { font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.3rem); }
+.section-head p { color: var(--ink-2); font-size: var(--text-md); line-height: 1.5; }
+
+/* Recruiter mode hides deep technical detail. Add class="engineer-only" to anything that should hide. */
+:root[data-mode="recruiter"] .engineer-only { display: none !important; }
+
+/* ---------- Engineer view: neon background and highlighted extra content ---------- */
+
+/* an extra neon layer over the background glows, faded in when the view switches */
+body::after {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        radial-gradient(38rem 26rem at 96% 30%, color-mix(in srgb, var(--neon) 16%, transparent), transparent 70%),
+        radial-gradient(34rem 26rem at 0% 78%, color-mix(in srgb, var(--neon-2) 14%, transparent), transparent 70%),
+        linear-gradient(180deg, transparent 0 60%, color-mix(in srgb, var(--neon) 6%, transparent));
+    opacity: 0; transition: opacity 700ms var(--ease);
+}
+:root[data-mode="engineer"] body::after { opacity: 1; }
+
+/* everything only engineers see gets a neon edge and glows in when it appears */
+:root[data-mode="engineer"] .engineer-only { animation: eng-in 900ms var(--ease); }
+@keyframes eng-in { 0% { opacity: 0; filter: drop-shadow(0 0 0 transparent); } 40% { opacity: 1; filter: drop-shadow(0 0 10px var(--neon)); } 100% { filter: drop-shadow(0 0 0 transparent); } }
+
+/* whole sections (Decisions) */
+:root[data-mode="engineer"] .section.engineer-only {
+    border-color: color-mix(in srgb, var(--neon) 55%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon) 25%, transparent), 0 0 40px -12px color-mix(in srgb, var(--neon) 55%, transparent);
+}
+.section.engineer-only::after {
+    content: "</> Engineer view"; position: absolute; top: 0.9rem; right: 1rem;
+    font: 700 var(--text-xs) / 1 var(--font-code); letter-spacing: 0.02em; color: var(--neon);
+    padding: 0.35rem 0.6rem; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--neon) 60%, transparent); background: color-mix(in srgb, var(--neon) 10%, transparent);
+    box-shadow: 0 0 14px -4px var(--neon);
+}
+
+/* tech-stack tags */
+:root[data-mode="engineer"] .tags.engineer-only .tag {
+    border-color: color-mix(in srgb, var(--neon) 55%, transparent);
+    box-shadow: 0 0 10px -4px color-mix(in srgb, var(--neon) 80%, transparent);
+}
+
+/* text blocks (e.g. a project's problem statement) */
+:root[data-mode="engineer"] p.engineer-only, :root[data-mode="engineer"] div.engineer-only {
+    border-left: 2px solid var(--neon); padding-left: 0.6rem;
+    box-shadow: -8px 0 14px -10px var(--neon);
+}
+
+/* menu links to engineer-only sections */
+:root[data-mode="engineer"] .nav li.engineer-only a { color: var(--neon); text-shadow: 0 0 10px color-mix(in srgb, var(--neon) 60%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+    body::after { transition: none; }
+    :root[data-mode="engineer"] .engineer-only { animation: none; }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    min-height: 2.75rem; padding: 0 1.15rem;
+    border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink);
+    font-weight: 620; font-size: var(--text-sm); text-decoration: none; cursor: pointer;
+    transition: background-color var(--fast), border-color var(--fast), transform var(--fast);
+}
+.btn:hover { border-color: var(--ink-2); text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+.btn--primary:hover { border-color: var(--signal); filter: brightness(1.08); }
+.btn--quiet { background: transparent; border-color: transparent; }
+.btn--quiet:hover { background: var(--surface-2); border-color: transparent; }
+.btn--icon { width: 2.5rem; min-height: 2.5rem; padding: 0; justify-content: center; }
+.btn svg { width: 1.1em; height: 1.1em; flex: none; }
+
+/* ---------- Filter chips (experience, projects, certifications) ---------- */
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    min-height: 2.25rem; padding: 0 0.9rem;
+    border-radius: 999px; border: 1px solid var(--line); background: transparent;
+    color: var(--ink-2); font-size: var(--text-sm); font-weight: 560; cursor: pointer;
+    transition: background-color var(--fast), color var(--fast), border-color var(--fast);
+}
+.chip:hover { border-color: var(--ink-2); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chip__count { font-size: var(--text-xs); opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+/* Small technology tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.375rem; list-style: none; }
+.tag {
+    font-size: var(--text-xs); font-weight: 540; color: var(--ink-2);
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 0.15rem 0.55rem; border-radius: var(--radius-sm);
+}
+
+/* Status badge: live / delivered / building / planned / earned */
+.status {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: var(--text-xs); font-weight: 650;
+    padding: 0.2rem 0.6rem 0.2rem 0.5rem; border-radius: 999px;
+    background: var(--surface-2); color: var(--ink-2);
+}
+.status::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
+.status--live, .status--delivered, .status--earned { background: var(--ok-soft); color: var(--ok); }
+.status--building, .status--in-progress { background: var(--signal-soft); color: var(--signal); }
+.status--planned { background: var(--plan-soft); color: var(--plan); }
+.status--live::before { animation: pulse 2.4s var(--ease) infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 currentColor; } 50% { box-shadow: 0 0 0 4px transparent; } }
+
+/* Panels: used for surfaces that hold an interactive thing */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+
+/* ---------- Loading state shown before Blazor starts (see index.html) ---------- */
+
+.static-fallback {
+    width: min(100% - 2 * var(--gutter), 52rem); margin: 18vh auto 0; display: grid; gap: 1.25rem;
+}
+.static-fallback__name { font-weight: 700; color: var(--signal); }
+.static-fallback h1 { font-size: var(--text-hero); max-width: 18ch; }
+.static-fallback p { color: var(--ink-2); max-width: 60ch; }
+.static-fallback__bar { height: 3px; background: var(--line); border-radius: 3px; overflow: hidden; margin-top: 1rem; max-width: 18rem; }
+.static-fallback__bar span {
+    display: block; height: 100%; background: var(--signal);
+    width: var(--blazor-load-percentage, 8%); transition: width 200ms linear;
+}
+
+/* ---------- Blazor error bar ---------- */
+
+#blazor-error-ui {
+    display: none; position: fixed; inset: auto 1rem 1rem 1rem; z-index: 1000;
+    padding: 0.85rem 1rem; border-radius: var(--radius); background: var(--ink); color: var(--paper);
+    box-shadow: var(--shadow);
+}
+#blazor-error-ui .reload { color: var(--paper); margin-left: 0.5rem; }
+#blazor-error-ui .dismiss { float: right; background: none; border: 0; color: var(--paper); cursor: pointer; font-size: 1.25rem; line-height: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+    body { background: #fff; color: #000; }
+    nav, .no-print { display: none !important; }
+}

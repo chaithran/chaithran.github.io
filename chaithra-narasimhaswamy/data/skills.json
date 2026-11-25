@@ -1,0 +1,166 @@
+// Skill groups. The order here is the order on the page.
+[
+  {
+    "id": "ai",
+    "name": {
+      "en": "AI engineering",
+      "de": "AI Engineering"
+    },
+    "skills": [
+      "Model Context Protocol (C# SDK)",
+      "Retrieval-augmented generation (RAG)",
+      "BM25 & hybrid search",
+      "Agents & tool calling",
+      "Prompt engineering",
+      "LLM evaluations",
+      "Guardrails & PII redaction",
+      "Azure OpenAI",
+      "Azure AI Foundry",
+      "LLM APIs",
+      "AI-assisted development"
+    ]
+  },
+  {
+    "id": "cloud",
+    "name": {
+      "en": "Cloud & infrastructure",
+      "de": "Cloud & Infrastruktur"
+    },
+    "skills": [
+      "Azure",
+      "Container Apps",
+      "App Service",
+      "API Management",
+      "Key Vault",
+      "App Configuration",
+      "Virtual Networks & Private Endpoints",
+      "Managed Identity",
+      "Docker",
+      "Terraform",
+      "Bicep",
+      "Packer"
+    ]
+  },
+  {
+    "id": "backend",
+    "name": {
+      "en": "Backend",
+      "de": "Backend"
+    },
+    "skills": [
+      ".NET 10",
+      "C#",
+      "ASP.NET Core",
+      "Web APIs",
+      "Entity Framework Core",
+      "ADO.NET",
+      "LINQ",
+      "Microservices",
+      "RabbitMQ",
+      "Event Store"
+    ]
+  },
+  {
+    "id": "architecture",
+    "name": {
+      "en": "Architecture",
+      "de": "Architektur"
+    },
+    "skills": [
+      "Domain-Driven Design",
+      "CQRS",
+      "Event Sourcing",
+      "Event-driven design",
+      "Architecture Decision Records",
+      "API design"
+    ]
+  },
+  {
+    "id": "security",
+    "name": {
+      "en": "Security & identity",
+      "de": "Sicherheit & Identität"
+    },
+    "skills": [
+      "OAuth 2.0 & PKCE",
+      "JWT",
+      "Entra ID",
+      "Claims-based authorization",
+      "Encryption at rest and in transit",
+      "GDPR for health data"
+    ]
+  },
+  {
+    "id": "devops",
+    "name": {
+      "en": "Delivery",
+      "de": "Delivery"
+    },
+    "skills": [
+      "Azure DevOps",
+      "GitHub Actions",
+      "CI/CD pipelines",
+      "GitFlow",
+      "xUnit",
+      "Playwright"
+    ]
+  },
+  {
+    "id": "data",
+    "name": {
+      "en": "Data",
+      "de": "Daten"
+    },
+    "skills": [
+      "SQL Server",
+      "Azure SQL",
+      "Cosmos DB",
+      "MongoDB",
+      "SSIS",
+      "SSRS"
+    ]
+  },
+  {
+    "id": "observability",
+    "name": {
+      "en": "Observability",
+      "de": "Observability"
+    },
+    "skills": [
+      "Application Insights",
+      "Log Analytics & KQL",
+      "New Relic",
+      "Alerting",
+      "Incident management"
+    ]
+  },
+  {
+    "id": "frontend",
+    "name": {
+      "en": "Frontend",
+      "de": "Frontend"
+    },
+    "skills": [
+      "Blazor",
+      "Angular",
+      "React",
+      "TypeScript",
+      "HTML & CSS"
+    ]
+  },
+  {
+    "id": "tools",
+    "name": {
+      "en": "Integrations & tools",
+      "de": "Integrationen & Tools"
+    },
+    "skills": [
+      "Braintree payments",
+      "CKEditor",
+      "Git",
+      "TFS",
+      "Jira",
+      "Confluence"
+    ]
+  }
+]

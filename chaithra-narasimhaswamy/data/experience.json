@@ -1,0 +1,126 @@
+// One entry per job, newest first. "end": null means it is your current role.
+// "logo" is the round badge (img/logos/, square, ~160 px); "brand" is the colour of the card's header band.
+// "industries" must use ids from industries.json. "stack" items are also what the hero query filters on.
+[
+  {
+    "id": "sinovo",
+    "logo": "img/logos/sinovo.webp",
+    "brand": "#22574d",
+    "company": "Sinovo Health Solutions",
+    "title": { "en": "Senior Software Engineer", "de": "Senior Software Engineer" },
+    "location": "Germany",
+    "start": "2023-03",
+    "end": null,
+    "industries": ["healthcare", "product"],
+    "summary": {
+      "en": "Senior engineer on a regulated healthcare platform used by 10K–500K+ people, owning production deployments and system design decisions.",
+      "de": "Senior Engineer einer regulierten Healthcare-Plattform mit 10K–500K+ Nutzern; verantwortlich für Produktiv-Deployments und Designentscheidungen."
+    },
+    "highlights": [
+      { "en": "Raised performance and uptime by 25%+ through architecture-level work on APIs and database integration.", "de": "Performance und Verfügbarkeit um über 25 % gesteigert durch Architekturarbeit an APIs und Datenbankanbindung." },
+      { "en": "Stepped in as acting architect on short notice and kept the live platform delivering on schedule.", "de": "Kurzfristig als Architekt eingesprungen; die Live-Plattform lieferte weiter im Plan." },
+      { "en": "Designed and built web applications end to end, from Azure infrastructure to the user interface.", "de": "Webanwendungen Ende-zu-Ende entworfen und gebaut – von der Azure-Infrastruktur bis zur Oberfläche." }
+    ],
+    "stack": [".NET", "C#", "Azure", "Container Apps", "API Management", "Key Vault", "Terraform", "Azure DevOps", "Blazor", "Cosmos DB", "Azure SQL", "Application Insights"]
+  },
+  {
+    "id": "aldi",
+    "logo": "img/logos/aldi.webp",
+    "brand": "#0b1a63",
+    "company": "ALDI Digital Services",
+    "title": { "en": "Subject Matter Expert", "de": "Subject Matter Expert" },
+    "location": "Germany",
+    "start": "2022-06",
+    "end": "2022-12",
+    "industries": ["retail"],
+    "summary": {
+      "en": "Kept retail systems stable through monitoring, incident management and release testing.",
+      "de": "Stabilität von Handelssystemen durch Monitoring, Incident Management und Release-Tests gesichert."
+    },
+    "highlights": [
+      { "en": "Cut incident resolution time by 20–40% with proactive infrastructure and security monitoring in New Relic.", "de": "Lösungszeit für Incidents um 20–40 % verkürzt durch proaktives Monitoring in New Relic." },
+      { "en": "Owned incident management, testing and UAT, advising stakeholders on stability and compliance.", "de": "Verantwortlich für Incident Management, Tests und UAT; Beratung zu Stabilität und Compliance." }
+    ],
+    "stack": ["New Relic", "Incident management", "UAT", "Azure"]
+  },
+  {
+    "id": "deloitte-consulting",
+    "logo": "img/logos/deloitte.webp",
+    "brand": "#0b3566",
+    "company": "Deloitte Consulting",
+    "title": { "en": "Software Developer", "de": "Software Developer" },
+    "location": "Germany",
+    "start": "2022-01",
+    "end": "2022-05",
+    "industries": ["consulting"],
+    "summary": {
+      "en": "Automated delivery pipelines and built internal web applications.",
+      "de": "Delivery-Pipelines automatisiert und interne Webanwendungen gebaut."
+    },
+    "highlights": [
+      { "en": "Increased deployment frequency by automating CI/CD with Azure DevOps, Terraform and Packer.", "de": "Deployment-Frequenz erhöht durch CI/CD-Automatisierung mit Azure DevOps, Terraform und Packer." },
+      { "en": "Built internal web apps with Angular, TypeScript, C#, .NET Core and SQL Server.", "de": "Interne Web-Apps mit Angular, TypeScript, C#, .NET Core und SQL Server gebaut." }
+    ],
+    "stack": ["Azure DevOps", "Terraform", "Packer", "Angular", "TypeScript", "C#", ".NET", "SQL Server"]
+  },
+  {
+    "id": "pm-international",
+    "logo": "img/logos/pm-international.webp",
+    "brand": "#1d3461",
+    "company": "PM International",
+    "title": { "en": "Software Developer", "de": "Software Developer" },
+    "location": "Germany",
+    "start": "2020-11",
+    "end": "2021-12",
+    "industries": ["ecommerce", "product"],
+    "summary": {
+      "en": "Built event-driven APIs for a global health and wellness e-commerce brand.",
+      "de": "Ereignisgesteuerte APIs für eine globale Health- und Wellness-E-Commerce-Marke gebaut."
+    },
+    "highlights": [
+      { "en": "Implemented .NET Core services with Docker, RabbitMQ and Event Store, following DDD and CQRS.", "de": ".NET-Core-Services mit Docker, RabbitMQ und Event Store nach DDD und CQRS umgesetzt." },
+      { "en": "Improved the shopping experience and supported core e-commerce features.", "de": "Einkaufserlebnis verbessert und zentrale E-Commerce-Funktionen betreut." }
+    ],
+    "stack": [".NET", "C#", "Docker", "RabbitMQ", "Event Store", "DDD", "CQRS", "MongoDB", "Angular", "Braintree"]
+  },
+  {
+    "id": "deloitte-tts",
+    "logo": "img/logos/deloitte.webp",
+    "brand": "#0a4b7d",
+    "company": "Deloitte Touche Tohmatsu",
+    "title": { "en": "Assistant Manager", "de": "Assistant Manager" },
+    "location": "India",
+    "start": "2018-11",
+    "end": "2020-06",
+    "industries": ["consulting", "finance"],
+    "summary": {
+      "en": "Led a small engineering team building dashboards and web applications for client engagements.",
+      "de": "Kleines Entwicklerteam geführt; Dashboards und Webanwendungen für Kundenprojekte gebaut."
+    },
+    "highlights": [
+      { "en": "Mentored and guided a team of 3–5 engineers.", "de": "Team von 3–5 Engineers gecoacht und geführt." },
+      { "en": "Strengthened security protocols, reducing operational risk by 30%.", "de": "Sicherheitsprozesse gestärkt; operatives Risiko um 30 % gesenkt." }
+    ],
+    "stack": ["Angular", ".NET", "C#", "SQL Server", "SSRS", "CKEditor"]
+  },
+  {
+    "id": "bosch",
+    "logo": "img/logos/bosch.webp",
+    "brand": "#24495a",
+    "company": "Robert Bosch Engineering and Business Solutions",
+    "title": { "en": "Software Developer", "de": "Software Developer" },
+    "location": "India",
+    "start": "2016-01",
+    "end": "2018-11",
+    "industries": ["automotive"],
+    "summary": {
+      "en": "Built web applications and data processing for engineering and business teams.",
+      "de": "Webanwendungen und Datenverarbeitung für Engineering- und Business-Teams gebaut."
+    },
+    "highlights": [
+      { "en": "Delivered a significant performance improvement by implementing a rule engine in SSIS.", "de": "Deutliche Performance-Verbesserung durch eine Rule Engine in SSIS." },
+      { "en": "Maintained legacy systems, trained team members and introduced agile practices.", "de": "Legacy-Systeme betreut, Kollegen geschult und agile Praktiken eingeführt." }
+    ],
+    "stack": ["SSIS", "SQL Server", "C#", "ASP.NET", "JavaScript"]
+  }
+]

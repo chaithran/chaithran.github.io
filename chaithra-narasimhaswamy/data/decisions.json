@@ -1,0 +1,93 @@
+// Architecture decisions, written like short ADRs: context, options, choice, why, outcome.
+// "chosen" is the option that was picked, counting from 0 (0 = first option).
+// Keep them free of internal names, numbers you can't share and anything under NDA.
+[
+  {
+    "id": "containers",
+    "title": { "en": "Move services from App Service to Container Apps", "de": "Services von App Service zu Container Apps verlagern" },
+    "company": "Sinovo Health Solutions",
+    "industries": ["healthcare"],
+    "context": { "en": "Services ran on App Service plans. Scaling was coarse, idle environments still held capacity, and releases needed careful slot swaps.", "de": "Services liefen auf App-Service-Plänen. Skalierung war grob, ungenutzte Umgebungen banden Kapazität, Releases brauchten Slot-Swaps." },
+    "options": [
+      { "en": "Stay on App Service and tune plans", "de": "Auf App Service bleiben und Pläne optimieren" },
+      { "en": "Azure Kubernetes Service", "de": "Azure Kubernetes Service" },
+      { "en": "Azure Container Apps", "de": "Azure Container Apps" }
+    ],
+    "chosen": 2,
+    "choice": { "en": "Azure Container Apps.", "de": "Azure Container Apps." },
+    "why": { "en": "Revisions give zero-downtime releases and instant rollback, environments can scale to zero, and internal ingress keeps services private. Kubernetes would have added cluster operations the team didn't need.", "de": "Revisionen ermöglichen Releases ohne Ausfall und sofortigen Rollback, Umgebungen skalieren auf null, interner Ingress hält Services privat. Kubernetes hätte unnötigen Cluster-Betrieb bedeutet." },
+    "outcome": { "en": "Simpler releases and per-service scaling.", "de": "Einfachere Releases und Skalierung pro Service." }
+  },
+  {
+    "id": "private-network",
+    "title": { "en": "Keep health data off the public internet", "de": "Gesundheitsdaten vom öffentlichen Internet fernhalten" },
+    "company": "Sinovo Health Solutions",
+    "industries": ["healthcare"],
+    "context": { "en": "Databases, secrets and configuration were reachable over public endpoints protected by firewall rules.", "de": "Datenbanken, Secrets und Konfiguration waren über öffentliche Endpunkte mit Firewall-Regeln erreichbar." },
+    "options": [
+      { "en": "IP allow-lists on public endpoints", "de": "IP-Allow-Lists auf öffentlichen Endpunkten" },
+      { "en": "Private endpoints with private DNS, public access disabled", "de": "Private Endpoints mit privatem DNS, öffentlicher Zugriff aus" }
+    ],
+    "chosen": 1,
+    "choice": { "en": "Private endpoints and private DNS zones; public network access turned off.", "de": "Private Endpoints und private DNS-Zonen; öffentlicher Netzwerkzugriff deaktiviert." },
+    "why": { "en": "Allow-lists drift and still expose an attack surface. With private endpoints the data services simply have no public address, which is easier to prove in a regulated audit.", "de": "Allow-Lists veralten und bieten weiter Angriffsfläche. Mit Private Endpoints haben Datendienste keine öffentliche Adresse – im regulierten Audit leichter nachzuweisen." }
+  },
+  {
+    "id": "one-gateway",
+    "title": { "en": "One API gateway instead of several", "de": "Ein API-Gateway statt mehrerer" },
+    "company": "Sinovo Health Solutions",
+    "industries": ["healthcare"],
+    "context": { "en": "Several API Management instances duplicated policies, products and maintenance work.", "de": "Mehrere API-Management-Instanzen duplizierten Policies, Produkte und Wartung." },
+    "options": [
+      { "en": "Keep separate instances", "de": "Getrennte Instanzen behalten" },
+      { "en": "Consolidate to one VNet-integrated instance", "de": "Auf eine VNet-integrierte Instanz konsolidieren" }
+    ],
+    "chosen": 1,
+    "choice": { "en": "One VNet-integrated API Management instance.", "de": "Eine VNet-integrierte API-Management-Instanz." },
+    "why": { "en": "One place for policies, subscriptions and versioning, and less to patch and monitor, while still routing privately to the services behind it.", "de": "Ein Ort für Policies, Subscriptions und Versionierung, weniger Wartung – bei weiterhin privatem Routing zu den Services." }
+  },
+  {
+    "id": "token-rotation",
+    "title": { "en": "Rotate refresh tokens on every use", "de": "Refresh-Tokens bei jeder Nutzung rotieren" },
+    "company": "Sinovo Health Solutions",
+    "industries": ["healthcare"],
+    "context": { "en": "Long-lived sessions on mobile and web had to stay convenient without letting a stolen token work for weeks.", "de": "Lange Sitzungen auf Mobil und Web sollten bequem bleiben, ohne dass ein gestohlenes Token wochenlang funktioniert." },
+    "options": [
+      { "en": "Long-lived access tokens", "de": "Langlebige Access-Tokens" },
+      { "en": "Short access tokens with static refresh tokens", "de": "Kurze Access-Tokens mit statischen Refresh-Tokens" },
+      { "en": "Short access tokens with rotating refresh tokens and reuse detection", "de": "Kurze Access-Tokens mit rotierenden Refresh-Tokens und Wiederverwendungserkennung" }
+    ],
+    "chosen": 2,
+    "choice": { "en": "Short-lived signed access tokens and refresh tokens that rotate on every use.", "de": "Kurzlebige signierte Access-Tokens und Refresh-Tokens, die bei jeder Nutzung rotieren." },
+    "why": { "en": "If an old refresh token is ever presented again, the whole token family is revoked, so a leak is detected and contained instead of silently reused.", "de": "Wird ein altes Refresh-Token erneut vorgelegt, wird die ganze Token-Familie widerrufen – ein Leck wird erkannt und eingedämmt." }
+  },
+  {
+    "id": "event-sourcing",
+    "title": { "en": "Event sourcing for orders", "de": "Event Sourcing für Bestellungen" },
+    "company": "PM International",
+    "industries": ["ecommerce"],
+    "context": { "en": "Orders changed state across several services, and support needed to see exactly what happened and when.", "de": "Bestellungen wechselten über mehrere Services ihren Zustand; der Support musste genau sehen, was wann passierte." },
+    "options": [
+      { "en": "CRUD tables with an audit log", "de": "CRUD-Tabellen mit Audit-Log" },
+      { "en": "Event sourcing with CQRS read models", "de": "Event Sourcing mit CQRS-Lesemodellen" }
+    ],
+    "chosen": 1,
+    "choice": { "en": "Event sourcing with Event Store, CQRS read models and RabbitMQ between services.", "de": "Event Sourcing mit Event Store, CQRS-Lesemodellen und RabbitMQ zwischen Services." },
+    "why": { "en": "The event stream is the audit trail, read models can be rebuilt for new views, and services stay loosely coupled through events.", "de": "Der Event-Stream ist der Audit-Trail, Lesemodelle lassen sich neu aufbauen, Services bleiben über Events lose gekoppelt." }
+  },
+  {
+    "id": "iac",
+    "title": { "en": "Everything as code, nothing by hand", "de": "Alles als Code, nichts von Hand" },
+    "company": "Deloitte Consulting",
+    "industries": ["consulting"],
+    "context": { "en": "Environments were built by hand and drifted apart, so bugs appeared only in some of them.", "de": "Umgebungen wurden von Hand gebaut und drifteten auseinander; Fehler traten nur in manchen auf." },
+    "options": [
+      { "en": "Runbooks and manual setup", "de": "Runbooks und manuelle Einrichtung" },
+      { "en": "Terraform for environments, Packer for images, pipelines for releases", "de": "Terraform für Umgebungen, Packer für Images, Pipelines für Releases" }
+    ],
+    "chosen": 1,
+    "choice": { "en": "Terraform, Packer and Azure DevOps pipelines.", "de": "Terraform, Packer und Azure-DevOps-Pipelines." },
+    "why": { "en": "Every environment comes from the same reviewed code, so a release that works in test works in production.", "de": "Jede Umgebung entsteht aus demselben geprüften Code – was im Test läuft, läuft in Produktion." },
+    "outcome": { "en": "Deployment frequency went up.", "de": "Die Deployment-Frequenz stieg." }
+  }
+]

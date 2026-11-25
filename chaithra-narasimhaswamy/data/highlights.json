@@ -1,0 +1,24 @@
+// Awards and education.
+{
+  "awards": [
+    {
+      "title": { "en": "Acting architect on a live platform", "de": "Kommissarische Architektin einer Live-Plattform" },
+      "detail": { "en": "Took over architecture and production ownership on short notice without slipping delivery.", "de": "Architektur und Produktionsverantwortung kurzfristig übernommen, ohne Verzug in der Lieferung." },
+      "year": null
+    },
+    {
+      "title": { "en": "Client recognition", "de": "Anerkennung durch Kunden" },
+      "detail": { "en": "Recognised for professional excellence by several clients across consulting engagements.", "de": "Von mehreren Kunden in Beratungsprojekten für herausragende Arbeit ausgezeichnet." },
+      "year": null
+    },
+    {
+      "title": { "en": "State-level winner, paper presentation", "de": "Landessiegerin, Paper-Präsentation" },
+      "detail": { "en": "Paper presentation on Google Glass.", "de": "Vortrag zu Google Glass." },
+      "year": null
+    }
+  ],
+  "education": [
+    { "degree": "B.E. Computer Science", "school": "Visvesvaraya Technological University, Belgaum", "year": "2015", "logo": "img/logos/vtu.webp" },
+    { "degree": "Diploma, Computer Science & Engineering", "school": "Board of Technical Education, Bangalore", "year": "2012", "logo": "img/logos/bte.webp" }
+  ]
+}

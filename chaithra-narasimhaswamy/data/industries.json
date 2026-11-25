@@ -1,0 +1,10 @@
+// The filter chips above the experience timeline. Jobs and projects refer to these ids.
+[
+  { "id": "healthcare", "name": { "en": "Healthcare", "de": "Healthcare" } },
+  { "id": "finance", "name": { "en": "Finance", "de": "Finanzen" } },
+  { "id": "ecommerce", "name": { "en": "E-commerce", "de": "E-Commerce" } },
+  { "id": "retail", "name": { "en": "Retail", "de": "Handel" } },
+  { "id": "automotive", "name": { "en": "Automotive", "de": "Automotive" } },
+  { "id": "consulting", "name": { "en": "Consulting", "de": "Beratung" } },
+  { "id": "product", "name": { "en": "Product companies", "de": "Produktfirmen" } }
+]

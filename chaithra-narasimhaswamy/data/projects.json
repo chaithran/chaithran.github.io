@@ -1,0 +1,352 @@
+// Projects. "kind": "professional" | "personal". "status": "live" | "delivered" | "building" | "planned".
+// "tags": ["ai"] shows the project in the AI engineering section instead of the Projects list.
+// "repoUrl": the GitHub link. AI projects without one show "Repo soon"; fill it in once you push the code.
+// Keep employer projects free of internal names and confidential numbers.
+[
+  {
+    "id": "this-portfolio",
+    "title": {
+      "en": "This portfolio",
+      "de": "Dieses Portfolio"
+    },
+    "kind": "personal",
+    "status": "live",
+    "industries": [],
+    "problem": {
+      "en": "A template portfolio showed a blank page until JavaScript loaded and said little about how I work.",
+      "de": "Ein Template-Portfolio zeigte bis zum Laden von JavaScript eine leere Seite und sagte wenig über meine Arbeitsweise."
+    },
+    "solution": {
+      "en": "A Blazor WebAssembly site driven by JSON content, with a live LINQ query, an animated request walkthrough and a search engine that answers questions in the browser.",
+      "de": "Eine Blazor-WebAssembly-Seite aus JSON-Inhalten, mit Live-LINQ-Abfrage, animiertem Request-Ablauf und einer Suche, die Fragen direkt im Browser beantwortet."
+    },
+    "outcome": {
+      "en": "Runs on free hosting, deploys on every push, and anyone can change the content without touching code.",
+      "de": "Läuft auf kostenlosem Hosting, deployt bei jedem Push, Inhalte ändern sich ohne Code."
+    },
+    "stack": [
+      ".NET 10",
+      "Blazor WebAssembly",
+      "GitHub Actions",
+      "GitHub Pages",
+      "xUnit"
+    ],
+    "repoUrl": null,
+    "demoUrl": null,
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "id": "portfolio-mcp",
+    "title": {
+      "en": "Portfolio MCP server",
+      "de": "Portfolio-MCP-Server"
+    },
+    "kind": "personal",
+    "status": "live",
+    "industries": [],
+    "problem": {
+      "en": "Recruiters increasingly use AI assistants, which can't read a portfolio reliably.",
+      "de": "Recruiter nutzen zunehmend KI-Assistenten, die ein Portfolio nicht zuverlässig lesen können."
+    },
+    "solution": {
+      "en": "A Model Context Protocol server in C# that exposes my experience, skills and certifications as tools any MCP client can call.",
+      "de": "Ein Model-Context-Protocol-Server in C#, der Erfahrung, Skills und Zertifikate als Tools für jeden MCP-Client bereitstellt."
+    },
+    "outcome": {
+      "en": "Shares the same data and search engine as the website, so both always agree.",
+      "de": "Nutzt dieselben Daten und dieselbe Suche wie die Website – beide sind immer konsistent."
+    },
+    "stack": [
+      "C#",
+      "Model Context Protocol",
+      ".NET Generic Host"
+    ],
+    "repoUrl": null,
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "id": "clinician-copilot",
+    "title": {
+      "en": "Clinician copilot over FHIR",
+      "de": "Clinician Copilot über FHIR"
+    },
+    "kind": "personal",
+    "status": "planned",
+    "industries": [
+      "healthcare"
+    ],
+    "problem": {
+      "en": "Clinicians lose minutes per patient piecing together what changed since the last visit across notes, labs and medications.",
+      "de": "Ärztinnen verlieren pro Patient Minuten damit, Änderungen seit dem letzten Besuch aus Notizen, Laboren und Medikation zusammenzusuchen."
+    },
+    "solution": {
+      "en": "A FHIR MCP server with consent-scoped OAuth gives an agent read access to one patient at a time. It answers \"what changed?\" with citations, retrieves guideline passages, redacts PII before anything leaves the boundary and is checked by an evaluation set in CI.",
+      "de": "Ein FHIR-MCP-Server mit einwilligungsbasiertem OAuth gibt einem Agenten Lesezugriff auf jeweils einen Patienten. Er beantwortet „Was hat sich geändert?“ mit Belegen, zieht Leitlinien heran, schwärzt PII und wird in der CI per Evaluierungsset geprüft."
+    },
+    "stack": [
+      ".NET",
+      "MCP C# SDK",
+      "FHIR",
+      "Azure OpenAI",
+      "RAG",
+      "OAuth 2.0",
+      "Evaluations"
+    ],
+    "tags": [
+      "ai"
+    ],
+    "repoUrl": null
+  },
+  {
+    "id": "healthcare-cloud",
+    "title": {
+      "en": "Healthcare platform cloud transition",
+      "de": "Cloud-Transition einer Healthcare-Plattform"
+    },
+    "kind": "professional",
+    "status": "delivered",
+    "company": "Sinovo Health Solutions",
+    "industries": [
+      "healthcare"
+    ],
+    "problem": {
+      "en": "A regulated platform handling health data needed to scale, deploy without downtime and keep data off the public internet.",
+      "de": "Eine regulierte Plattform mit Gesundheitsdaten musste skalieren, ohne Ausfallzeit deployen und Daten vom öffentlichen Internet fernhalten."
+    },
+    "solution": {
+      "en": "Containerised services on Azure Container Apps behind API Management, private networking, managed identities and Key Vault, all defined in Terraform and released through Azure DevOps pipelines.",
+      "de": "Container-Services auf Azure Container Apps hinter API Management, privates Netzwerk, Managed Identities und Key Vault – alles in Terraform und über Azure-DevOps-Pipelines ausgerollt."
+    },
+    "outcome": {
+      "en": "25%+ better performance and uptime for 10K–500K+ users.",
+      "de": "Über 25 % bessere Performance und Verfügbarkeit für 10K–500K+ Nutzer."
+    },
+    "stack": [
+      "Azure Container Apps",
+      "API Management",
+      "Key Vault",
+      "Terraform",
+      "Azure DevOps",
+      ".NET"
+    ],
+    "tags": [],
+    "repoUrl": null
+  },
+  {
+    "id": "event-sourced-commerce",
+    "title": {
+      "en": "Event-sourced commerce services",
+      "de": "Event-Sourcing für E-Commerce"
+    },
+    "kind": "professional",
+    "status": "delivered",
+    "company": "PM International",
+    "industries": [
+      "ecommerce"
+    ],
+    "problem": {
+      "en": "Order and customer data for a global brand had to stay consistent across many services.",
+      "de": "Bestell- und Kundendaten einer globalen Marke mussten über viele Services konsistent bleiben."
+    },
+    "solution": {
+      "en": "Domain-driven services with CQRS and Event Store, communicating over RabbitMQ and shipped in Docker.",
+      "de": "Domänengetriebene Services mit CQRS und Event Store, Kommunikation über RabbitMQ, ausgeliefert in Docker."
+    },
+    "stack": [
+      ".NET",
+      "Event Store",
+      "RabbitMQ",
+      "Docker",
+      "DDD",
+      "CQRS"
+    ],
+    "tags": [],
+    "repoUrl": null
+  },
+  {
+    "id": "pipeline-automation",
+    "title": {
+      "en": "Infrastructure and pipeline automation",
+      "de": "Infrastruktur- und Pipeline-Automatisierung"
+    },
+    "kind": "professional",
+    "status": "delivered",
+    "company": "Deloitte Consulting",
+    "industries": [
+      "consulting"
+    ],
+    "problem": {
+      "en": "Manual builds and environment setup slowed every release.",
+      "de": "Manuelle Builds und Umgebungen bremsten jedes Release."
+    },
+    "solution": {
+      "en": "Images built with Packer, environments with Terraform, releases through Azure DevOps.",
+      "de": "Images mit Packer, Umgebungen mit Terraform, Releases über Azure DevOps."
+    },
+    "outcome": {
+      "en": "More frequent, repeatable deployments.",
+      "de": "Häufigere, reproduzierbare Deployments."
+    },
+    "stack": [
+      "Terraform",
+      "Packer",
+      "Azure DevOps"
+    ],
+    "tags": [],
+    "repoUrl": null
+  },
+  {
+    "id": "ssis-rule-engine",
+    "title": {
+      "en": "Data rule engine",
+      "de": "Daten-Rule-Engine"
+    },
+    "kind": "professional",
+    "status": "delivered",
+    "company": "Robert Bosch Engineering and Business Solutions",
+    "industries": [
+      "automotive"
+    ],
+    "problem": {
+      "en": "Business rules buried in slow batch processing.",
+      "de": "Geschäftsregeln in langsamer Batch-Verarbeitung versteckt."
+    },
+    "solution": {
+      "en": "A configurable rule engine built in SSIS.",
+      "de": "Eine konfigurierbare Rule Engine in SSIS."
+    },
+    "outcome": {
+      "en": "A significant performance improvement for the data jobs.",
+      "de": "Deutlich schnellere Datenjobs."
+    },
+    "stack": [
+      "SSIS",
+      "SQL Server"
+    ],
+    "tags": [],
+    "repoUrl": null
+  },
+  {
+    "id": "workshop-copilot",
+    "title": {
+      "en": "Service technician copilot",
+      "de": "Copilot für Servicetechniker"
+    },
+    "kind": "personal",
+    "status": "planned",
+    "industries": [
+      "automotive"
+    ],
+    "problem": {
+      "en": "Technicians search repair manuals and fault codes by hand.",
+      "de": "Techniker durchsuchen Reparaturhandbücher und Fehlercodes von Hand."
+    },
+    "solution": {
+      "en": "An agent that reads diagnostic fault codes through an MCP server and proposes fixes with citations from the manuals.",
+      "de": "Ein Agent, der Fehlercodes über einen MCP-Server liest und Reparaturen mit Belegen aus den Handbüchern vorschlägt."
+    },
+    "stack": [
+      ".NET",
+      "MCP",
+      "RAG",
+      "Evaluations"
+    ],
+    "tags": [
+      "ai"
+    ],
+    "repoUrl": null
+  },
+  {
+    "id": "aml-agent",
+    "title": {
+      "en": "Fraud investigation agent",
+      "de": "Agent für Betrugsermittlung"
+    },
+    "kind": "personal",
+    "status": "planned",
+    "industries": [
+      "finance"
+    ],
+    "problem": {
+      "en": "Investigators piece together suspicious transactions across systems.",
+      "de": "Ermittler setzen verdächtige Transaktionen über viele Systeme zusammen."
+    },
+    "solution": {
+      "en": "An agent with tools over a ledger, graph queries for linked accounts and a human approval step before any case report.",
+      "de": "Ein Agent mit Tools über ein Hauptbuch, Graph-Abfragen für verbundene Konten und menschlicher Freigabe vor jedem Bericht."
+    },
+    "stack": [
+      ".NET",
+      "MCP",
+      "Graph queries",
+      "Human-in-the-loop"
+    ],
+    "tags": [
+      "ai"
+    ],
+    "repoUrl": null
+  },
+  {
+    "id": "code-review-agent",
+    "title": {
+      "en": "Architecture review agent",
+      "de": "Architektur-Review-Agent"
+    },
+    "kind": "personal",
+    "status": "planned",
+    "industries": [],
+    "problem": {
+      "en": "Pull requests break architecture rules that live in ADRs nobody re-reads.",
+      "de": "Pull Requests verletzen Architekturregeln, die in ADRs stehen, die niemand mehr liest."
+    },
+    "solution": {
+      "en": "MCP servers expose the repository, the ADRs and Azure DevOps. An agent checks each pull request against the rules and comments with the ADR it relies on. A set of seeded defects measures how many it catches.",
+      "de": "MCP-Server stellen Repository, ADRs und Azure DevOps bereit. Ein Agent prüft jeden Pull Request gegen die Regeln und kommentiert mit dem passenden ADR. Ein Set eingebauter Fehler misst die Trefferquote."
+    },
+    "stack": [
+      ".NET",
+      "MCP",
+      "Azure DevOps",
+      "Agents",
+      "Evaluations"
+    ],
+    "tags": [
+      "ai"
+    ],
+    "repoUrl": null
+  },
+  {
+    "id": "shopping-assistant",
+    "title": {
+      "en": "Shopping assistant",
+      "de": "Shopping-Assistent"
+    },
+    "kind": "personal",
+    "status": "planned",
+    "industries": [
+      "retail"
+    ],
+    "problem": {
+      "en": "Shoppers ask questions that keyword search can't answer, like which product suits a specific need.",
+      "de": "Kundinnen stellen Fragen, die eine Stichwortsuche nicht beantwortet – etwa welches Produkt zu einem bestimmten Bedarf passt."
+    },
+    "solution": {
+      "en": "Hybrid search over the catalogue and reviews, plus tool calls for live stock, so answers are grounded and current.",
+      "de": "Hybride Suche über Katalog und Bewertungen plus Tool-Aufrufe für den Live-Bestand – Antworten sind belegt und aktuell."
+    },
+    "stack": [
+      ".NET",
+      "Azure AI Search",
+      "Hybrid search",
+      "Tool calling"
+    ],
+    "tags": [
+      "ai"
+    ],
+    "repoUrl": null
+  }
+]

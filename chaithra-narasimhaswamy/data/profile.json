@@ -1,0 +1,153 @@
+// Who you are. Any text can be a plain string, or { "en": "...", "de": "..." } for both languages.
+{
+  "name": "Chaithra Narasimhaswamy",
+  "role": {
+    "en": "Senior .NET, Azure & AI Engineer",
+    "de": "Senior .NET-, Azure- & AI-Engineer"
+  },
+  "headline": {
+    "en": "10+ years of .NET and Azure in production. Now I build AI that is safe to ship.",
+    "de": "10+ Jahre .NET und Azure in Produktion. Jetzt baue ich KI, die sicher live gehen kann."
+  },
+  "summary": {
+    "en": "Healthcare, finance, e-commerce, retail and automotive. Today I own system design and production for a regulated healthcare platform, and I build MCP servers, retrieval and agents on top.",
+    "de": "Healthcare, Finanzen, E-Commerce, Handel und Automotive. Heute verantworte ich Systemdesign und Produktion einer regulierten Healthcare-Plattform und baue MCP-Server, Retrieval und Agenten darauf."
+  },
+  "location": "Frankfurt am Main, Germany",
+  "workPermit": {
+    "en": "Permanent residence with freelancing visa in Germany. No visa sponsorship needed.",
+    "de": "Niederlassungserlaubnis mit Freiberufler-Visum in Deutschland. Kein Sponsoring nötig."
+  },
+  "availability": {
+    "en": "Available immediately.",
+    "de": "Ab sofort verfügbar."
+  },
+  "openTo": {
+    "en": "Open to permanent and freelance roles in English-speaking teams.",
+    "de": "Offen für Festanstellung und Freelance, in englischsprachigen Teams."
+  },
+  "email": "chaithra.ediga@gmail.com",
+  "phone": "+49 152 1874 5643",
+  "linkedIn": "https://www.linkedin.com/in/chaithraediga",
+  "gitHub": "https://github.com/chaithran",
+  "cvUrl": "files/Chaithra_Narasimhaswamy_CV.pdf",
+  "photoUrl": "img/photo.webp",
+  "stats": [
+    {
+      "value": "10+",
+      "label": {
+        "en": "years building .NET systems",
+        "de": "Jahre .NET-Systeme"
+      }
+    },
+    {
+      "value": "5",
+      "label": {
+        "en": "industries, one way of working",
+        "de": "Branchen, eine Arbeitsweise"
+      }
+    },
+    {
+      "value": "500K+",
+      "label": {
+        "en": "users on the platform I run today",
+        "de": "Nutzer auf meiner aktuellen Plattform"
+      }
+    },
+    {
+      "value": "25%+",
+      "label": {
+        "en": "gain in performance and uptime",
+        "de": "mehr Performance und Verfügbarkeit"
+      }
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": {
+        "en": "Fluent, professional",
+        "de": "Fließend, beruflich"
+      },
+      "percent": 95
+    },
+    {
+      "name": "Deutsch",
+      "level": {
+        "en": "A2",
+        "de": "A2"
+      },
+      "percent": 35
+    },
+    {
+      "name": "Kannada",
+      "level": {
+        "en": "Native",
+        "de": "Muttersprache"
+      },
+      "percent": 100
+    },
+    {
+      "name": "Hindi",
+      "level": {
+        "en": "Fluent",
+        "de": "Fließend"
+      },
+      "percent": 90
+    }
+  ],
+  "aiFocus": {
+    "intro": {
+      "en": "AI on top of production-grade .NET and Azure. Each topic links to the code.",
+      "de": "KI auf produktionsreifem .NET und Azure. Jedes Thema verlinkt auf den Code."
+    },
+    "pillars": [
+      {
+        "icon": "code",
+        "title": {
+          "en": "MCP servers",
+          "de": "MCP-Server"
+        },
+        "text": {
+          "en": "Typed, scoped tools that let AI assistants work with real systems, every call logged.",
+          "de": "Typisierte, begrenzte Tools, mit denen KI-Assistenten auf echten Systemen arbeiten – jeder Aufruf protokolliert."
+        },
+        "projects": [
+          "portfolio-mcp",
+          "code-review-agent"
+        ]
+      },
+      {
+        "icon": "data",
+        "title": {
+          "en": "Retrieval with sources",
+          "de": "Retrieval mit Quellen"
+        },
+        "text": {
+          "en": "Answers from your own documents that say where each fact came from.",
+          "de": "Antworten aus eigenen Dokumenten, die zu jeder Aussage die Quelle nennen."
+        },
+        "projects": [
+          "this-portfolio",
+          "workshop-copilot",
+          "shopping-assistant"
+        ]
+      },
+      {
+        "icon": "rules",
+        "title": {
+          "en": "Agents with guardrails",
+          "de": "Agenten mit Leitplanken"
+        },
+        "text": {
+          "en": "Multi-step agents with human approval, PII redaction and evaluations in CI.",
+          "de": "Mehrstufige Agenten mit Freigabe, PII-Schwärzung und Evaluierungen in der CI."
+        },
+        "projects": [
+          "clinician-copilot",
+          "aml-agent"
+        ]
+      }
+    ]
+  }
+}

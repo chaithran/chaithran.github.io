@@ -1,0 +1,148 @@
+// "status": "earned" | "in-progress" | "planned". Move an item up a status as you go.
+// "kind": "certification" (an exam or Applied Skills credential) | "course" (a completed training, shown smaller).
+// For earned ones add "date": "2026-11" and "credentialUrl" (Credly or Microsoft Learn): it shows a "Verify" link.
+// For "in-progress" you may add "progress": 60 to show a bar. "tags" with "ai" count toward the AI focus.
+// Source of this list: AI_Certifications_Tracker.xlsx. When you finish something there, update it here too.
+[
+  {
+    "id": "ai-901",
+    "provider": "Microsoft",
+    "name": "Azure AI Fundamentals",
+    "code": "AI-901",
+    "status": "earned",
+    "kind": "certification",
+    "tags": [
+      "ai",
+      "cloud"
+    ]
+  },
+  {
+    "id": "google-genai-intro",
+    "provider": "Google",
+    "name": "Introduction to Generative AI",
+    "status": "earned",
+    "date": null,
+    "credentialUrl": null,
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "ai-200",
+    "provider": "Microsoft",
+    "name": "Azure AI Cloud Developer Associate",
+    "code": "AI-200",
+    "status": "in-progress",
+    "tags": [
+      "ai",
+      "cloud"
+    ],
+    "kind": "certification"
+  },
+  {
+    "id": "ai-102",
+    "provider": "Microsoft",
+    "name": "Azure AI Engineer Associate",
+    "code": "AI-102",
+    "status": "planned",
+    "tags": [
+      "ai",
+      "cloud"
+    ],
+    "kind": "certification"
+  },
+  {
+    "id": "applied-genai-apps",
+    "provider": "Microsoft",
+    "name": "Applied Skills: Generative AI apps in Azure",
+    "status": "planned",
+    "tags": [
+      "ai",
+      "cloud"
+    ],
+    "kind": "certification"
+  },
+  {
+    "id": "applied-agent-foundry",
+    "provider": "Microsoft",
+    "name": "Applied Skills: Build an agent with Azure AI Foundry",
+    "status": "planned",
+    "tags": [
+      "ai",
+      "cloud"
+    ],
+    "kind": "certification"
+  },
+  {
+    "id": "aws-ai-practitioner",
+    "provider": "AWS",
+    "name": "Certified AI Practitioner",
+    "status": "planned",
+    "tags": [
+      "ai",
+      "cloud"
+    ],
+    "kind": "certification"
+  },
+  {
+    "id": "hf-mcp",
+    "provider": "Hugging Face",
+    "name": "MCP Course",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "hf-agents",
+    "provider": "Hugging Face",
+    "name": "AI Agents Course",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "hf-llm",
+    "provider": "Hugging Face",
+    "name": "LLM Course",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "databricks-genai",
+    "provider": "Databricks",
+    "name": "Generative AI Fundamentals",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "ibm-ai",
+    "provider": "IBM",
+    "name": "SkillsBuild: AI Fundamentals",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  },
+  {
+    "id": "deeplearning-ai",
+    "provider": "DeepLearning.AI",
+    "name": "Short courses on agents and RAG",
+    "status": "planned",
+    "tags": [
+      "ai"
+    ],
+    "kind": "course"
+  }
+]

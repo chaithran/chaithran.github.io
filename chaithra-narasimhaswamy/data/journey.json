@@ -1,0 +1,947 @@
+// "Life of a request": one flow per sector, each with its own architecture.
+// Per flow: company and period it comes from, the request, the tools shown as chips,
+// and the boxes ("steps") in the order the request visits them.
+// Step x/y = box centre on a 1000 x 400 canvas (boxes are 156 x 68). Keep boxes 170 apart
+// and step names to about 13 characters, or they run past the box.
+// "kind" picks the icon: client, identity, edge, compute, secret, data, event, observe, audit,
+// store, payment, rules, queue, mail, bell, dashboard, test, pipeline, report, editor, file,
+// code, package, cloud, user.
+{
+  "title": {
+    "en": "Life of a request",
+    "de": "Lebenslauf eines Requests"
+  },
+  "intro": {
+    "en": "Pick a system, press play and follow one request through it.",
+    "de": "System wählen, Play drücken und einer Anfrage durch das System folgen."
+  },
+  "scenarios": [
+    {
+      "id": "ai",
+      "name": {
+        "en": "AI assistant",
+        "de": "KI-Assistent"
+      },
+      "company": "Personal project",
+      "period": "2026",
+      "story": {
+        "en": "A recruiter asks an AI assistant about my experience, and the answer comes from my own data with sources.",
+        "de": "Eine Recruiterin fragt einen KI-Assistenten nach meiner Erfahrung – die Antwort kommt aus meinen eigenen Daten, mit Quellen."
+      },
+      "request": "tools/call  ask { \"question\": \"Has she used Terraform?\" }",
+      "tools": [
+        "Model Context Protocol",
+        "MCP C# SDK",
+        ".NET 10",
+        "BM25 retrieval",
+        "VS Code (Copilot)",
+        "xUnit"
+      ],
+      "outcome": {
+        "en": "The model never guesses: it calls a typed tool, the tool searches my real content, and every answer names the section it came from.",
+        "de": "Das Modell rät nicht: Es ruft ein typisiertes Tool auf, das Tool durchsucht meine echten Inhalte, und jede Antwort nennt ihren Abschnitt."
+      },
+      "steps": [
+        {
+          "id": "ask",
+          "name": {
+            "en": "Question",
+            "de": "Frage"
+          },
+          "tech": "Chat · natural language",
+          "x": 100,
+          "y": 200,
+          "kind": "user",
+          "caption": {
+            "en": "Someone asks an AI assistant: \"Has she used Terraform?\"",
+            "de": "Jemand fragt einen KI-Assistenten: „Hat sie Terraform genutzt?“"
+          }
+        },
+        {
+          "id": "client",
+          "name": {
+            "en": "MCP client",
+            "de": "MCP-Client"
+          },
+          "tech": "VS Code · stdio",
+          "x": 290,
+          "y": 90,
+          "kind": "client",
+          "caption": {
+            "en": "The assistant sees the portfolio's tools and decides to call one instead of guessing.",
+            "de": "Der Assistent sieht die Tools des Portfolios und ruft eines auf, statt zu raten."
+          }
+        },
+        {
+          "id": "server",
+          "name": {
+            "en": "MCP server",
+            "de": "MCP-Server"
+          },
+          "tech": ".NET 10 · MCP C# SDK",
+          "x": 480,
+          "y": 200,
+          "kind": "compute",
+          "caption": {
+            "en": "The Portfolio MCP server receives a typed tools/call request over stdio. No network port is opened.",
+            "de": "Der Portfolio-MCP-Server erhält einen typisierten tools/call-Aufruf über stdio. Kein Netzwerkport wird geöffnet."
+          }
+        },
+        {
+          "id": "tool",
+          "name": {
+            "en": "Tool: ask",
+            "de": "Tool: ask"
+          },
+          "tech": "MCP tool · ask, find_skill, list_*",
+          "x": 670,
+          "y": 90,
+          "kind": "code",
+          "caption": {
+            "en": "The ask tool validates its input. Narrow tools like find_skill return structured data.",
+            "de": "Das Tool ask prüft seine Eingabe. Enge Tools wie find_skill liefern strukturierte Daten."
+          }
+        },
+        {
+          "id": "search",
+          "name": {
+            "en": "BM25 search",
+            "de": "BM25-Suche"
+          },
+          "tech": "Portfolio.Core · in memory",
+          "x": 860,
+          "y": 200,
+          "kind": "data",
+          "caption": {
+            "en": "BM25 ranks chunks built from every job, project and certificate, the same code the website uses.",
+            "de": "BM25 bewertet Abschnitte aus allen Jobs, Projekten und Zertifikaten – derselbe Code wie auf der Website."
+          }
+        },
+        {
+          "id": "content",
+          "name": {
+            "en": "JSON content",
+            "de": "JSON-Inhalte"
+          },
+          "tech": "wwwroot/data · read-only",
+          "x": 670,
+          "y": 310,
+          "kind": "file",
+          "caption": {
+            "en": "The content files are the single source of truth. The tools can read them but never change them.",
+            "de": "Die Inhaltsdateien sind die einzige Quelle. Die Tools können sie lesen, aber nie ändern."
+          }
+        },
+        {
+          "id": "answer",
+          "name": {
+            "en": "Cited answer",
+            "de": "Mit Quelle"
+          },
+          "tech": "Answer · sources",
+          "x": 290,
+          "y": 310,
+          "kind": "report",
+          "caption": {
+            "en": "The assistant replies with the jobs where Terraform was used, each with its source section.",
+            "de": "Der Assistent antwortet mit den Jobs, in denen Terraform genutzt wurde – jeweils mit Quellabschnitt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "healthcare",
+      "name": {
+        "en": "Healthcare",
+        "de": "Healthcare"
+      },
+      "company": "Sinovo Health Solutions",
+      "period": "2023 – today",
+      "story": {
+        "en": "A clinician opens a patient's latest results.",
+        "de": "Eine Ärztin öffnet die neuesten Befunde eines Patienten."
+      },
+      "request": "GET /patients/{id}/results",
+      "tools": [
+        "Blazor",
+        "Entra ID",
+        "OAuth 2.0 + PKCE",
+        "API Management",
+        "Container Apps",
+        "Key Vault",
+        "App Configuration",
+        "Azure SQL",
+        "Cosmos DB",
+        "Private endpoints",
+        "Application Insights",
+        "Terraform"
+      ],
+      "outcome": {
+        "en": "Health data never touched the public internet, and every access left an audit line for GDPR.",
+        "de": "Gesundheitsdaten berührten nie das öffentliche Internet, und jeder Zugriff hinterließ einen Audit-Eintrag für die DSGVO."
+      },
+      "steps": [
+        {
+          "id": "client",
+          "name": {
+            "en": "App",
+            "de": "App"
+          },
+          "tech": "Blazor web · mobile",
+          "x": 80,
+          "y": 200,
+          "kind": "client",
+          "caption": {
+            "en": "The clinician taps the patient. Nothing medical is cached on the device.",
+            "de": "Die Ärztin tippt auf den Patienten. Medizinische Daten werden nicht auf dem Gerät gespeichert."
+          }
+        },
+        {
+          "id": "identity",
+          "name": {
+            "en": "Sign-in",
+            "de": "Anmeldung"
+          },
+          "tech": "Entra ID · OAuth 2.0 + PKCE",
+          "x": 240,
+          "y": 70,
+          "kind": "identity",
+          "caption": {
+            "en": "Sign-in with PKCE returns a short-lived token with the clinician's role. Refresh tokens rotate on every use.",
+            "de": "Anmeldung mit PKCE liefert ein kurzlebiges Token mit der Rolle der Ärztin. Refresh-Tokens rotieren bei jeder Nutzung."
+          }
+        },
+        {
+          "id": "gateway",
+          "name": {
+            "en": "Gateway",
+            "de": "Gateway"
+          },
+          "tech": "API Management · VNet",
+          "x": 400,
+          "y": 200,
+          "kind": "edge",
+          "caption": {
+            "en": "One VNet-integrated API Management instance checks the token, subscription and rate limit before anything reaches a service.",
+            "de": "Eine VNet-integrierte API-Management-Instanz prüft Token, Subscription und Rate-Limit, bevor etwas einen Service erreicht."
+          }
+        },
+        {
+          "id": "service",
+          "name": {
+            "en": "Service",
+            "de": "Service"
+          },
+          "tech": ".NET 10 · Container Apps",
+          "x": 570,
+          "y": 200,
+          "kind": "compute",
+          "caption": {
+            "en": "A .NET service on Container Apps, reachable only through internal ingress, checks the patient's consent for this clinic.",
+            "de": "Ein .NET-Service auf Container Apps, nur über internen Ingress erreichbar, prüft die Einwilligung des Patienten für diese Praxis."
+          }
+        },
+        {
+          "id": "secrets",
+          "name": {
+            "en": "Secrets",
+            "de": "Secrets"
+          },
+          "tech": "Key Vault · App Configuration",
+          "x": 570,
+          "y": 60,
+          "kind": "secret",
+          "caption": {
+            "en": "Connection details come from Key Vault and App Configuration through a managed identity. No passwords in config.",
+            "de": "Verbindungsdaten kommen per Managed Identity aus Key Vault und App Configuration. Keine Passwörter in der Konfiguration."
+          }
+        },
+        {
+          "id": "data",
+          "name": {
+            "en": "Health data",
+            "de": "Befunde"
+          },
+          "tech": "Azure SQL · Cosmos DB",
+          "x": 750,
+          "y": 110,
+          "kind": "data",
+          "caption": {
+            "en": "Results are read over a private endpoint; public network access is switched off and data is encrypted at rest.",
+            "de": "Befunde werden über einen Private Endpoint gelesen; öffentlicher Zugriff ist aus, Daten sind verschlüsselt gespeichert."
+          }
+        },
+        {
+          "id": "audit",
+          "name": {
+            "en": "Audit trail",
+            "de": "Audit-Trail"
+          },
+          "tech": "Consent check · access log",
+          "x": 750,
+          "y": 300,
+          "kind": "audit",
+          "caption": {
+            "en": "Who opened which record, and on which consent, is written to the access log, as GDPR requires for health data.",
+            "de": "Wer welche Akte auf welcher Einwilligung geöffnet hat, landet im Zugriffsprotokoll, wie es die DSGVO verlangt."
+          }
+        },
+        {
+          "id": "observe",
+          "name": {
+            "en": "Telemetry",
+            "de": "Telemetrie"
+          },
+          "tech": "App Insights · KQL",
+          "x": 915,
+          "y": 200,
+          "kind": "observe",
+          "caption": {
+            "en": "One trace in Application Insights links every hop, with no patient data in the logs. KQL alerts watch latency.",
+            "de": "Ein Trace in Application Insights verbindet jeden Schritt, ohne Patientendaten in den Logs. KQL-Alerts überwachen die Latenz."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "name": {
+        "en": "E-commerce",
+        "de": "E-Commerce"
+      },
+      "company": "PM International",
+      "period": "2020 – 2021",
+      "story": {
+        "en": "A shopper checks out and pays.",
+        "de": "Eine Kundin bezahlt ihre Bestellung."
+      },
+      "request": "POST /orders/{id}/checkout",
+      "tools": [
+        "Angular",
+        ".NET Core",
+        "Docker",
+        "DDD",
+        "CQRS",
+        "Event Store",
+        "RabbitMQ",
+        "Braintree",
+        "MongoDB"
+      ],
+      "outcome": {
+        "en": "Every service reacted to the same events on its own, and support could replay exactly what happened to any order.",
+        "de": "Jeder Service reagierte eigenständig auf dieselben Events, und der Support konnte jede Bestellung genau nachvollziehen."
+      },
+      "steps": [
+        {
+          "id": "store",
+          "name": {
+            "en": "Storefront",
+            "de": "Shop"
+          },
+          "tech": "Angular · checkout",
+          "x": 80,
+          "y": 110,
+          "kind": "store",
+          "caption": {
+            "en": "The shopper presses Pay. Braintree's client SDK turns the card into a token in the browser, so card numbers never reach our servers.",
+            "de": "Die Kundin drückt auf Bezahlen. Braintrees Client-SDK macht im Browser ein Token aus der Karte – Kartennummern erreichen nie unsere Server."
+          }
+        },
+        {
+          "id": "api",
+          "name": {
+            "en": "Order API",
+            "de": "Order-API"
+          },
+          "tech": ".NET Core · Docker",
+          "x": 250,
+          "y": 110,
+          "kind": "compute",
+          "caption": {
+            "en": "The order API, a .NET Core service in Docker, validates the basket and the payment token.",
+            "de": "Die Order-API, ein .NET-Core-Service in Docker, prüft Warenkorb und Zahlungstoken."
+          }
+        },
+        {
+          "id": "aggregate",
+          "name": {
+            "en": "Aggregate",
+            "de": "Aggregat"
+          },
+          "tech": "DDD · CQRS command",
+          "x": 420,
+          "y": 110,
+          "kind": "rules",
+          "caption": {
+            "en": "A PlaceOrder command reaches the Order aggregate, which enforces the domain rules: stock, totals, one checkout per order.",
+            "de": "Ein PlaceOrder-Command erreicht das Order-Aggregat, das die Domänenregeln durchsetzt: Bestand, Summen, ein Checkout pro Bestellung."
+          }
+        },
+        {
+          "id": "payment",
+          "name": {
+            "en": "Payment",
+            "de": "Zahlung"
+          },
+          "tech": "Braintree · tokenised card",
+          "x": 590,
+          "y": 110,
+          "kind": "payment",
+          "caption": {
+            "en": "Braintree authorises the payment with the token. An idempotency key makes sure a retry never pays twice.",
+            "de": "Braintree autorisiert die Zahlung mit dem Token. Ein Idempotency-Key sorgt dafür, dass ein Retry nie doppelt zahlt."
+          }
+        },
+        {
+          "id": "events",
+          "name": {
+            "en": "Event Store",
+            "de": "Event Store"
+          },
+          "tech": "OrderPlaced · PaymentAuthorised",
+          "x": 800,
+          "y": 110,
+          "kind": "data",
+          "caption": {
+            "en": "OrderPlaced and PaymentAuthorised are appended to the order's stream in Event Store. The stream is the audit trail.",
+            "de": "OrderPlaced und PaymentAuthorised werden an den Stream der Bestellung in Event Store angehängt. Der Stream ist der Audit-Trail."
+          }
+        },
+        {
+          "id": "bus",
+          "name": {
+            "en": "Message bus",
+            "de": "Message-Bus"
+          },
+          "tech": "RabbitMQ · fan-out",
+          "x": 800,
+          "y": 290,
+          "kind": "queue",
+          "caption": {
+            "en": "The events go out over RabbitMQ. Fulfilment, invoicing and email each subscribe and work on their own.",
+            "de": "Die Events gehen über RabbitMQ raus. Versand, Rechnung und E-Mail abonnieren sie und arbeiten unabhängig."
+          }
+        },
+        {
+          "id": "readmodel",
+          "name": {
+            "en": "Read model",
+            "de": "Lesemodell"
+          },
+          "tech": "MongoDB · projection",
+          "x": 560,
+          "y": 290,
+          "kind": "data",
+          "caption": {
+            "en": "A projection updates the MongoDB read model that the order pages and support tools query.",
+            "de": "Eine Projektion aktualisiert das MongoDB-Lesemodell, das Bestellseiten und Support-Tools abfragen."
+          }
+        },
+        {
+          "id": "confirm",
+          "name": {
+            "en": "Confirmation",
+            "de": "Bestätigung"
+          },
+          "tech": "Order page · email",
+          "x": 320,
+          "y": 290,
+          "kind": "mail",
+          "caption": {
+            "en": "The shopper sees the confirmation page and receives the email, both built from the read model.",
+            "de": "Die Kundin sieht die Bestätigungsseite und bekommt die E-Mail – beide aus dem Lesemodell."
+          }
+        }
+      ]
+    },
+    {
+      "id": "retail",
+      "name": {
+        "en": "Retail",
+        "de": "Handel"
+      },
+      "company": "ALDI Digital Services",
+      "period": "2022",
+      "story": {
+        "en": "A store service slows down at peak hour.",
+        "de": "Ein Filial-Service wird zur Stoßzeit langsam."
+      },
+      "request": "ALERT  response time above threshold",
+      "tools": [
+        "New Relic APM",
+        "New Relic Alerts",
+        "Dashboards",
+        "Incident management",
+        "Regression testing",
+        "UAT",
+        "Azure"
+      ],
+      "outcome": {
+        "en": "Catching problems in New Relic before users reported them cut incident resolution time by 20–40%.",
+        "de": "Probleme in New Relic zu erkennen, bevor Nutzer sie meldeten, verkürzte die Lösungszeit von Incidents um 20–40 %."
+      },
+      "steps": [
+        {
+          "id": "service",
+          "name": {
+            "en": "Store service",
+            "de": "Filialdienst"
+          },
+          "tech": "Retail web services",
+          "x": 90,
+          "y": 200,
+          "kind": "compute",
+          "caption": {
+            "en": "Peak hour: a store service starts answering more slowly than usual.",
+            "de": "Stoßzeit: Ein Filial-Service antwortet langsamer als üblich."
+          }
+        },
+        {
+          "id": "apm",
+          "name": {
+            "en": "Monitoring",
+            "de": "Monitoring"
+          },
+          "tech": "New Relic APM · traces",
+          "x": 260,
+          "y": 80,
+          "kind": "observe",
+          "caption": {
+            "en": "New Relic APM traces every request and spots the slow database call before customers report it.",
+            "de": "New Relic APM verfolgt jeden Request und findet den langsamen Datenbankaufruf, bevor Kunden ihn melden."
+          }
+        },
+        {
+          "id": "alert",
+          "name": {
+            "en": "Alert",
+            "de": "Alarm"
+          },
+          "tech": "Threshold · on-call",
+          "x": 430,
+          "y": 200,
+          "kind": "bell",
+          "caption": {
+            "en": "The response-time alert fires and the on-call engineer gets a link straight to the trace.",
+            "de": "Der Antwortzeit-Alarm löst aus, und die Rufbereitschaft bekommt einen Link direkt zum Trace."
+          }
+        },
+        {
+          "id": "triage",
+          "name": {
+            "en": "Triage",
+            "de": "Analyse"
+          },
+          "tech": "Dashboards · error traces",
+          "x": 600,
+          "y": 80,
+          "kind": "dashboard",
+          "caption": {
+            "en": "Dashboards and error traces narrow it down to one query and one recent change. Security monitoring rules out an attack.",
+            "de": "Dashboards und Fehler-Traces grenzen es auf eine Abfrage und eine Änderung ein. Security-Monitoring schließt einen Angriff aus."
+          }
+        },
+        {
+          "id": "fix",
+          "name": {
+            "en": "Fix + test",
+            "de": "Fix + Test"
+          },
+          "tech": "Regression · UAT",
+          "x": 770,
+          "y": 200,
+          "kind": "test",
+          "caption": {
+            "en": "The fix goes through regression tests and user acceptance testing with the business before release.",
+            "de": "Der Fix durchläuft Regressionstests und Abnahmetests mit dem Fachbereich vor dem Release."
+          }
+        },
+        {
+          "id": "release",
+          "name": {
+            "en": "Release",
+            "de": "Release"
+          },
+          "tech": "Approved change",
+          "x": 600,
+          "y": 320,
+          "kind": "pipeline",
+          "caption": {
+            "en": "The change is approved and released in the agreed window.",
+            "de": "Die Änderung wird freigegeben und im vereinbarten Zeitfenster ausgerollt."
+          }
+        },
+        {
+          "id": "watch",
+          "name": {
+            "en": "Watch",
+            "de": "Beobachten"
+          },
+          "tech": "New Relic · back to normal",
+          "x": 330,
+          "y": 320,
+          "kind": "report",
+          "caption": {
+            "en": "Response times return to normal on the same dashboards, and the incident closes with a short review.",
+            "de": "Die Antwortzeiten normalisieren sich auf denselben Dashboards, der Incident schließt mit einem kurzen Review."
+          }
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": {
+        "en": "Finance",
+        "de": "Finanzen"
+      },
+      "company": "Deloitte Touche Tohmatsu",
+      "period": "2018 – 2020",
+      "story": {
+        "en": "A manager opens a risk dashboard.",
+        "de": "Ein Manager öffnet ein Risiko-Dashboard."
+      },
+      "request": "GET /dashboards/risk",
+      "tools": [
+        "Angular 8",
+        "CKEditor",
+        ".NET Web API",
+        "Role-based access",
+        "SQL Server",
+        "SSRS"
+      ],
+      "outcome": {
+        "en": "Tighter access rules and reviewed code across the team reduced operational risk by 30%.",
+        "de": "Strengere Zugriffsregeln und geprüfter Code im Team senkten das operative Risiko um 30 %."
+      },
+      "steps": [
+        {
+          "id": "landing",
+          "name": {
+            "en": "Landing page",
+            "de": "Startseite"
+          },
+          "tech": "Angular 8 · CKEditor",
+          "x": 90,
+          "y": 200,
+          "kind": "editor",
+          "caption": {
+            "en": "The manager lands on a page whose text the business team edits themselves in CKEditor, without a release.",
+            "de": "Der Manager landet auf einer Seite, deren Text das Fachteam selbst in CKEditor pflegt – ohne Release."
+          }
+        },
+        {
+          "id": "access",
+          "name": {
+            "en": "Access",
+            "de": "Zugriff"
+          },
+          "tech": "Role-based access",
+          "x": 260,
+          "y": 80,
+          "kind": "identity",
+          "caption": {
+            "en": "Role-based access decides which business units and figures this manager may see.",
+            "de": "Rollenbasierter Zugriff entscheidet, welche Bereiche und Zahlen dieser Manager sehen darf."
+          }
+        },
+        {
+          "id": "api",
+          "name": {
+            "en": "API",
+            "de": "API"
+          },
+          "tech": ".NET Web API",
+          "x": 430,
+          "y": 200,
+          "kind": "compute",
+          "caption": {
+            "en": "A .NET Web API gathers the dashboard data for that role.",
+            "de": "Eine .NET-Web-API sammelt die Dashboard-Daten für diese Rolle."
+          }
+        },
+        {
+          "id": "db",
+          "name": {
+            "en": "Data",
+            "de": "Daten"
+          },
+          "tech": "SQL Server · procedures",
+          "x": 610,
+          "y": 80,
+          "kind": "data",
+          "caption": {
+            "en": "SQL Server returns the figures through parameterised stored procedures.",
+            "de": "SQL Server liefert die Zahlen über parametrisierte Stored Procedures."
+          }
+        },
+        {
+          "id": "report",
+          "name": {
+            "en": "Reports",
+            "de": "Berichte"
+          },
+          "tech": "SSRS · scheduled",
+          "x": 790,
+          "y": 200,
+          "kind": "report",
+          "caption": {
+            "en": "The larger tables come from SSRS reports, scheduled and cached.",
+            "de": "Die größeren Tabellen kommen aus SSRS-Berichten, geplant und zwischengespeichert."
+          }
+        },
+        {
+          "id": "dash",
+          "name": {
+            "en": "Dashboard",
+            "de": "Dashboard"
+          },
+          "tech": "Angular 8 charts",
+          "x": 610,
+          "y": 320,
+          "kind": "dashboard",
+          "caption": {
+            "en": "Angular 8 charts show the risk view. The same app served dashboards for several client teams.",
+            "de": "Angular-8-Charts zeigen die Risikosicht. Dieselbe App lieferte Dashboards für mehrere Kundenteams."
+          }
+        }
+      ]
+    },
+    {
+      "id": "automotive",
+      "name": {
+        "en": "Automotive",
+        "de": "Automotive"
+      },
+      "company": "Robert Bosch Engineering and Business Solutions",
+      "period": "2016 – 2018",
+      "story": {
+        "en": "Engineering data is checked against business rules overnight.",
+        "de": "Engineering-Daten werden nachts gegen Geschäftsregeln geprüft."
+      },
+      "request": "SSIS job · nightly 02:00",
+      "tools": [
+        "SSIS",
+        "Rule engine",
+        "SQL Server",
+        "SSRS",
+        "ASP.NET",
+        "C#"
+      ],
+      "outcome": {
+        "en": "Moving the rules into a configurable SSIS engine made the nightly jobs significantly faster.",
+        "de": "Die Regeln in eine konfigurierbare SSIS-Engine zu verlagern, machte die nächtlichen Jobs deutlich schneller."
+      },
+      "steps": [
+        {
+          "id": "source",
+          "name": {
+            "en": "Source data",
+            "de": "Quelldaten"
+          },
+          "tech": "Files · business systems",
+          "x": 90,
+          "y": 110,
+          "kind": "file",
+          "caption": {
+            "en": "Each night, files and exports from engineering and business systems land in a drop folder.",
+            "de": "Jede Nacht landen Dateien und Exporte aus Engineering- und Business-Systemen in einem Ablageordner."
+          }
+        },
+        {
+          "id": "extract",
+          "name": {
+            "en": "Extract",
+            "de": "Laden"
+          },
+          "tech": "SSIS data flow",
+          "x": 270,
+          "y": 110,
+          "kind": "pipeline",
+          "caption": {
+            "en": "An SSIS data flow loads them into staging tables.",
+            "de": "Ein SSIS-Datenfluss lädt sie in Staging-Tabellen."
+          }
+        },
+        {
+          "id": "rules",
+          "name": {
+            "en": "Rule engine",
+            "de": "Rule Engine"
+          },
+          "tech": "SSIS · rules in tables",
+          "x": 450,
+          "y": 110,
+          "kind": "rules",
+          "caption": {
+            "en": "The rule engine checks every record against rules kept in tables, so the business can change a rule without a code change.",
+            "de": "Die Rule Engine prüft jeden Datensatz gegen Regeln in Tabellen – Regeln ändern sich ohne Codeänderung."
+          }
+        },
+        {
+          "id": "warehouse",
+          "name": {
+            "en": "Warehouse",
+            "de": "Warehouse"
+          },
+          "tech": "SQL Server",
+          "x": 630,
+          "y": 110,
+          "kind": "data",
+          "caption": {
+            "en": "Valid records move to the SQL Server warehouse; failures go to a review list with the rule that failed.",
+            "de": "Gültige Datensätze gehen ins SQL-Server-Warehouse, Fehler auf eine Prüfliste mit der verletzten Regel."
+          }
+        },
+        {
+          "id": "reports",
+          "name": {
+            "en": "Reports",
+            "de": "Berichte"
+          },
+          "tech": "SSRS",
+          "x": 810,
+          "y": 210,
+          "kind": "report",
+          "caption": {
+            "en": "SSRS builds the morning reports from the warehouse.",
+            "de": "SSRS erstellt die Morgenberichte aus dem Warehouse."
+          }
+        },
+        {
+          "id": "app",
+          "name": {
+            "en": "Web app",
+            "de": "Web-App"
+          },
+          "tech": "ASP.NET · C#",
+          "x": 560,
+          "y": 320,
+          "kind": "client",
+          "caption": {
+            "en": "Engineers open an ASP.NET app to review the exceptions and correct the source data.",
+            "de": "Ingenieure öffnen eine ASP.NET-App, prüfen die Ausnahmen und korrigieren die Quelldaten."
+          }
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": {
+        "en": "DevOps",
+        "de": "DevOps"
+      },
+      "company": "Deloitte Consulting",
+      "period": "2022",
+      "story": {
+        "en": "A commit goes to production.",
+        "de": "Ein Commit geht in Produktion."
+      },
+      "request": "git push origin feature/…",
+      "tools": [
+        "Git",
+        "Azure DevOps",
+        "Packer",
+        "Terraform",
+        "Angular 8",
+        ".NET Core",
+        "SQL Server"
+      ],
+      "outcome": {
+        "en": "Automating the path from commit to production raised deployment frequency and ended hand-built environments.",
+        "de": "Die Automatisierung vom Commit bis zur Produktion erhöhte die Deployment-Frequenz und beendete handgebaute Umgebungen."
+      },
+      "steps": [
+        {
+          "id": "commit",
+          "name": {
+            "en": "Commit",
+            "de": "Commit"
+          },
+          "tech": "Git · pull request",
+          "x": 90,
+          "y": 200,
+          "kind": "code",
+          "caption": {
+            "en": "A developer opens a pull request. Review and branch policies guard the main branch.",
+            "de": "Eine Entwicklerin öffnet einen Pull Request. Review und Branch-Policies schützen den Main-Branch."
+          }
+        },
+        {
+          "id": "build",
+          "name": {
+            "en": "Build + test",
+            "de": "Build + Test"
+          },
+          "tech": "Azure DevOps pipeline",
+          "x": 260,
+          "y": 80,
+          "kind": "pipeline",
+          "caption": {
+            "en": "Azure DevOps builds the Angular and .NET Core apps and runs the tests.",
+            "de": "Azure DevOps baut die Angular- und .NET-Core-Apps und führt die Tests aus."
+          }
+        },
+        {
+          "id": "image",
+          "name": {
+            "en": "Image",
+            "de": "Image"
+          },
+          "tech": "Packer · golden image",
+          "x": 430,
+          "y": 200,
+          "kind": "package",
+          "caption": {
+            "en": "Packer bakes a versioned machine image, so every server starts identical.",
+            "de": "Packer baut ein versioniertes Maschinen-Image – jeder Server startet identisch."
+          }
+        },
+        {
+          "id": "infra",
+          "name": {
+            "en": "Environments",
+            "de": "Umgebungen"
+          },
+          "tech": "Terraform plan · apply",
+          "x": 610,
+          "y": 80,
+          "kind": "cloud",
+          "caption": {
+            "en": "Terraform plans the change, a reviewer approves it, and the same code is applied to each environment.",
+            "de": "Terraform plant die Änderung, ein Reviewer gibt sie frei, und derselbe Code wird auf jede Umgebung angewendet."
+          }
+        },
+        {
+          "id": "deploy",
+          "name": {
+            "en": "Deploy",
+            "de": "Deploy"
+          },
+          "tech": "App · SQL Server changes",
+          "x": 790,
+          "y": 200,
+          "kind": "compute",
+          "caption": {
+            "en": "The release deploys the app and the database changes in one pipeline.",
+            "de": "Das Release deployt App und Datenbankänderungen in einer Pipeline."
+          }
+        },
+        {
+          "id": "verify",
+          "name": {
+            "en": "Verify",
+            "de": "Prüfen"
+          },
+          "tech": "Smoke tests · monitoring",
+          "x": 610,
+          "y": 320,
+          "kind": "test",
+          "caption": {
+            "en": "Smoke tests and monitoring confirm the release; a failed check stops the rollout.",
+            "de": "Smoke-Tests und Monitoring bestätigen das Release; ein Fehlschlag stoppt den Rollout."
+          }
+        }
+      ]
+    }
+  ]
+}

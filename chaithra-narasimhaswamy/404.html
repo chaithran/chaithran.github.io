@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="engineer">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Chaithra Narasimhaswamy – Senior .NET, Azure &amp; AI Engineer, Frankfurt</title>
+    <meta name="description" content="Senior .NET, Azure and AI engineer in Frankfurt: MCP servers, RAG and agents on top of 10+ years across healthcare, finance, e-commerce, retail and automotive. Permanent residence with freelancing visa in Germany, available immediately." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chaithra Narasimhaswamy – Senior .NET, Azure &amp; AI Engineer" />
+    <meta property="og:description" content="10+ years of .NET and Azure in production. Now I build AI that is safe to ship." />
+    <meta property="og:image" content="https://chaithran.github.io/chaithra-narasimhaswamy/img/og-card.png" />
+    <meta property="og:url" content="https://chaithran.github.io/chaithra-narasimhaswamy/" />
+    <link rel="canonical" href="https://chaithran.github.io/chaithra-narasimhaswamy/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#eef2f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#070b1a" media="(prefers-color-scheme: dark)" />
+
+    <!-- The deploy workflow replaces this with "/<repo-name>/" when the site is not at the domain root. -->
+    <base href="/chaithra-narasimhaswamy/" />
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+    <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link href="_framework/dotnet.gfupgz0h7l.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-TCJez3QLBE1C4nTXuwxV7AqDcEjyGS2W4VyL1YaRbHU=" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="Portfolio.Web.styles.css" />
+
+    <!-- Applies the saved theme before anything paints, so there is no light/dark flash. -->
+    <script>
+        (function () {
+            try {
+                var d = document.documentElement;
+                // Dark unless the visitor picked light with the theme button.
+                var theme = localStorage.getItem("theme") || "dark";
+                d.dataset.theme = theme;
+                d.dataset.mode = localStorage.getItem("mode") || "engineer";
+                var lang = localStorage.getItem("lang") || ((navigator.language || "en").slice(0, 2) === "de" ? "de" : "en");
+                d.lang = lang;
+            } catch (e) { }
+        })();
+    </script>
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.gfupgz0h7l.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.6ilbvndvcf.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.v2rwe8u38b.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
+    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
+    "./_framework/dotnet.gfupgz0h7l.js": "sha256-TCJez3QLBE1C4nTXuwxV7AqDcEjyGS2W4VyL1YaRbHU=",
+    "./_framework/dotnet.js": "sha256-TCJez3QLBE1C4nTXuwxV7AqDcEjyGS2W4VyL1YaRbHU=",
+    "./_framework/dotnet.native.6ilbvndvcf.js": "sha256-YvNi2Q+yHnXi8iT7ROza0OEWWv2tCpuTI2Ggaeura3U=",
+    "./_framework/dotnet.native.js": "sha256-YvNi2Q+yHnXi8iT7ROza0OEWWv2tCpuTI2Ggaeura3U=",
+    "./_framework/dotnet.runtime.js": "sha256-6SBqDbLLy460Bxd7wMZoiO97hZfLTuF+HRhWT3elS7U=",
+    "./_framework/dotnet.runtime.v2rwe8u38b.js": "sha256-6SBqDbLLy460Bxd7wMZoiO97hZfLTuF+HRhWT3elS7U="
+  }
+}</script>
+</head>
+
+<body>
+    <!-- Animated background (js/background.js). Lives outside #app so Blazor never replaces it. -->
+    <canvas id="bg-net" aria-hidden="true"></canvas>
+    <!--
+        Everything inside #app is shown until Blazor has loaded, then replaced.
+        It doubles as the version search engines and no-JavaScript visitors see,
+        so keep it in sync with profile.json when you change your headline.
+    -->
+    <div id="app">
+        <main class="static-fallback">
+            <p class="static-fallback__name">Chaithra Narasimhaswamy</p>
+            <h1>10+ years of .NET and Azure in production. Now I build AI that is safe to ship.</h1>
+            <p>Senior .NET, Azure &amp; AI Engineer in Frankfurt am Main. 10+ years across healthcare, finance, e-commerce, retail and automotive. Permanent residence with freelancing visa in Germany, available immediately.</p>
+            <p>
+                <a href="mailto:chaithra.ediga@gmail.com">chaithra.ediga@gmail.com</a> ·
+                <a href="https://www.linkedin.com/in/chaithraediga">LinkedIn</a> ·
+                <a href="https://github.com/chaithran">GitHub</a>
+            </p>
+            <div class="static-fallback__bar" aria-hidden="true"><span></span></div>
+        </main>
+    </div>
+
+    <div id="blazor-error-ui" role="alert">
+        Something went wrong while loading the page.
+        <a href="." class="reload">Reload</a>
+        <button class="dismiss" aria-label="Dismiss">×</button>
+    </div>
+
+    <script src="js/site.js"></script>
+    <script src="js/background.js" defer></script>
+    <script src="_framework/blazor.webassembly.w3qd1tpl0e.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+// The feedback popup sends reviews to a Google Form; you read them in its linked Google Sheet.
+// Setup (once): create a form with 6 short-answer questions: Verdict, Role, Review, Name, Email, View.
+// Then ⋮ → "Get pre-filled link", type the question name in capitals as the answer
+// (VERDICT, ROLE, REVIEW, NAME, EMAIL, VIEW), click "Get link", copy it and paste it below.
+// Leave it null and the popup asks visitors to email you instead.
+{
+  "prefilledLink": "https://docs.google.com/forms/d/e/1FAIpQLSc-K20UoJ3bLLNQcvjtN21JfFVVimAGZl91ExjoZRsTZTupRg/viewform?usp=pp_url&entry.798498756=VERDICT&entry.531867076=ROLE&entry.1180472575=REVIEW&entry.957160901=NAME&entry.1105416027=EMAIL&entry.1403112633=VIEW"
+}

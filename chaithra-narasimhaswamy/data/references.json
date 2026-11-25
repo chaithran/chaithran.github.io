@@ -1,0 +1,15 @@
+// Recommendations: only add quotes the person agreed to publish.
+//   { "name": "...", "role": "...", "company": "...", "quote": { "en": "...", "de": "..." }, "url": "https://linkedin...", "date": "2025-04" }
+// Letters: experience certificates (Arbeitszeugnisse). Keep the full documents private; list them here
+// with an optional one-line highlight you are happy to show. The section shows "available on request".
+{
+  "recommendations": [],
+  "letters": [
+    { "company": "Sinovo Health Solutions", "kind": { "en": "Interim reference", "de": "Zwischenzeugnis" }, "highlight": null, "date": null },
+    { "company": "ALDI Digital Services", "kind": { "en": "Experience certificate", "de": "Arbeitszeugnis" }, "highlight": null, "date": "2022-12" },
+    { "company": "Deloitte Consulting", "kind": { "en": "Experience certificate", "de": "Arbeitszeugnis" }, "highlight": null, "date": "2022-05" },
+    { "company": "PM International", "kind": { "en": "Experience certificate", "de": "Arbeitszeugnis" }, "highlight": null, "date": "2021-12" },
+    { "company": "Deloitte Touche Tohmatsu", "kind": { "en": "Experience letter", "de": "Arbeitszeugnis" }, "highlight": null, "date": "2020-06" },
+    { "company": "Robert Bosch Engineering and Business Solutions", "kind": { "en": "Experience letter", "de": "Arbeitszeugnis" }, "highlight": null, "date": "2018-11" }
+  ]
+}
